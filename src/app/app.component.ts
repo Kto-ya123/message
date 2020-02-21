@@ -8,22 +8,12 @@ import {MenuItem, MessageService} from 'primeng/api';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MessageService]
 })
 export class AppComponent /*implements OnInit*/ {
   title = 'AppComponent';
   users: Array<User> = [];
   name: string;
   age: number;
-  items: MenuItem[];
-  constructor(private messageService: MessageService) {}
-  ngOnInit() {
-    this.items = [
-      {label: 'Delete', icon: 'pi pi-refresh', command: () => {
-          this.getIndexUser(new User('Artur', 24));
-        }}
-    ];
-  }
   addUser(myForm: NgForm): void {
     const user: User = new User( this.name, this.age );
     if (this.getIndexUser(user) === -1) {

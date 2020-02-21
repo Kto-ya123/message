@@ -1,17 +1,21 @@
-<div>Some Information</div>
+<h2>Persons</h2>
 <form #myForm="ngForm" novalidate>
+  <br>
+  <span class="ui-float-label">
+    <input id="float-input-name" type="text" size="20" name="name" [(ngModel)]="name" pInputText>
+    <label for="float-input-name">Name</label>
+  </span>
+  <br>
+  <span class="ui-float-label">
+    <input id="float-input-age" type="number" size="30" name="age" [(ngModel)]="age" pInputText>
+    <label for="float-input-age">Age</label>
+</span>
   <div>
-    <label>Name:</label>
-    <input class="form-control" type="text" name="name" [(ngModel)]="name"/>
+    <br>
+    <button pButton type="button" label="Add" (click)="addUser(myForm)" class="ui-button-rounded ui-button-success"></button>
+    <button pButton type="button" label="Delete" (click)="deleteUser(myForm)" class="ui-button-rounded ui-button-danger"></button>
   </div>
-  <div>
-    <label>Age:</label>
-    <input class="form-control" type="number" name="age" [(ngModel)]="age"/>
-  </div>
-  <!--<p-splitButton label="Save" icon="pi pi-check" (onClick)="addUser(myForm)" ></p-splitButton>-->
-  <button type="submit" (click)="addUser(myForm)">Добавить</button>
 
-  <button type="submit" (click)="deleteUser(myForm)">Удалить</button>
 </form>
 <ul>
   <li *ngFor='let user of users'>{{ user.name }} - {{ user.age }}</li>
