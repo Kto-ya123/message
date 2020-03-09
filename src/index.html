@@ -1,13 +1,21 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8">
   <title>Message</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="http://localhost:8080/webjars/jquery/3.4.1/jquery.min.js"></script>
+  <script src="http://localhost:8080/webjars/momentjs/2.24.0/moment.js"></script>
+  <link href="http://localhost:8080/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="http://localhost:8080/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <app-root></app-root>
+ <router-outlet>
+   <app-car></app-car>
+   <app-client></app-client>
+ </router-outlet>
 </body>
 </html>
+
