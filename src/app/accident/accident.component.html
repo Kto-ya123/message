@@ -11,8 +11,7 @@
       <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#myModal">Add</a>
         <!-- The Modal -->
-        <!-- class="modal fade" id="myModal" -->
-        <div>
+        <div class="modal fade" id="myModal">
           <div class="modal-dialog">
             <div class="modal-content">
 
@@ -29,8 +28,8 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Contract number</span>
                     </div>
-                    <select name="contract" [(ngModel)]="accident.contract"  class="custom-select mb-1">
-                      <option *ngFor="let contract of contracts" selected value="{{contract}}">{{contract.id}}
+                    <select name="contract" [(ngModel)]="accident.contract.id"  class="custom-select mb-1">
+                      <option *ngFor="let contract of contracts" selected value="{{contract.id}}">{{contract.id}}
                         -{{contract.car.model}}-{{contract.car.vehicleNumber}}</option>
                     </select>
                   </div>
@@ -64,7 +63,7 @@
   <table class="table table-hover table-light">
     <thead class="thead-dark">
     <tr>
-      <th scope="col">Contact number</th>
+      <th scope="col">Contract number</th>
       <th scope="col">Date of accident</th>
       <th scope="col">Cost of damage</th>
       <th scope="col">Action</th>
@@ -76,9 +75,9 @@
       <td>{{accident.dateOfAccident}}</td>
       <td>{{accident.costOfDamage}}</td>
       <td>
-        <a class="nav-link" data-toggle="modal" data-target="#reduct${accident.id}">Update</a>
+        <a class="nav-link" data-toggle="modal" data-target="#reduct{{accident.id.toString(accident.id)}}">Update</a>
         <!-- The Modal -->
-        <div>
+        <div class="modal fade" id="reduct{{accident.id.toString(accident.id)}}">
           <div class="modal-dialog">
             <div class="modal-content">
 
@@ -96,7 +95,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Contract number</span>
                     </div>
-                    <select name="contract" class="custom-select mb-1">
+                    <select name="contract" [(ngModel)]="accident.contract.id" class="custom-select mb-1">
                       <option *ngFor="let contract of contracts" selected value="{{contract.id}}">{{contract.id}}
                         -{{contract.car.model}}-{{contract.car.vehicleNumber}}</option>
                     </select>

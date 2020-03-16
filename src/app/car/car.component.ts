@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Car} from '../../assets/car';
-import {NgForm} from '@angular/forms';
 import {CarHttpService} from './car.http.service';
 
 @Component({
@@ -12,6 +11,7 @@ export class CarComponent implements OnInit {
   title = 'CarComponent';
   cars: Array<Car> = new Array<Car>();
   car: Car = new Car();
+  updatingCar: Car = new Car();
   constructor(private httpService: CarHttpService ) {}
   ngOnInit(): void {
     this.httpService.getCars().subscribe((data: Array<Car>) => this.cars = data);
@@ -37,5 +37,9 @@ export class CarComponent implements OnInit {
       .subscribe(
         () => this.ngOnInit()
       );
+  }
+
+  setDataUpdateCar(carId: number) {
+    this.httpService.getCar(carId).subscribe((data) => this.updatingCar = data);
   }
 }

@@ -11,70 +11,147 @@
       <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#myModal">Add</a>
         <!-- The Modal -->
-        <div class="modal fade" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Adding</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-
-              <!-- Modal body -->
-              <div>
-                <form #myForm="ngForm">
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Surname</span>
-                    </div>
-                    <input type="text" name="surname" [(ngModel)]="client.surname" class="form-control">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Name</span>
-                    </div>
-                    <input type="text" name="name" [(ngModel)]="client.name" class="form-control">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Patronymic</span>
-                    </div>
-                    <input type="text" name="patronymic" [(ngModel)]="client.patronymic" class="form-control">
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Passport data</span>
-                    </div>
-                    <input type="text" name="passport" [(ngModel)]="client.passport" class="form-control">
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Experience</span>
-                    </div>
-                    <input type="text" name="experience" [(ngModel)]="client.experience" class="form-control">
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Phone number</span>
-                    </div>
-                    <input type="text" name="phone" [(ngModel)]="client.phoneNumber" class="form-control">
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Address</span>
-                    </div>
-                    <input type="text" name="address" [(ngModel)]="client.address" class="form-control">
-                  </div>
-                  <!-- Modal footer -->
-                  <div class="modal-footer">
-                    <button class="btn btn-outline-success p-2" type="submit" (click)="addClient(client)">Save</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#update">Update</a>
+        <!-- The Modal -->
       </li>
     </ul>
   </div>
 </nav>
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Adding</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div>
+          <form #myForm="ngForm">
+            <div class="input-group mb-3 input-group-sm">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Surname</span>
+              </div>
+              <input type="text" name="surname" [(ngModel)]="client.surname" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Name</span>
+              </div>
+              <input type="text" name="name" [(ngModel)]="client.name" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Patronymic</span>
+              </div>
+              <input type="text" name="patronymic" [(ngModel)]="client.patronymic" class="form-control">
+            </div>
+            <div class="input-group mb-3 input-group-sm">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Passport data</span>
+              </div>
+              <input type="text" name="passport" [(ngModel)]="client.passport" class="form-control">
+            </div>
+            <div class="input-group mb-3 input-group-sm">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Experience</span>
+              </div>
+              <input type="text" name="experience" [(ngModel)]="client.experience" class="form-control">
+            </div>
+            <div class="input-group mb-3 input-group-sm">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Phone number</span>
+              </div>
+              <input type="text" name="phone" [(ngModel)]="client.phoneNumber" class="form-control">
+            </div>
+            <div class="input-group mb-3 input-group-sm">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Address</span>
+              </div>
+              <input type="text" name="address" [(ngModel)]="client.address" class="form-control">
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button class="btn btn-outline-success p-2" type="submit" (click)="addClient(client)">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- The Modal -->
+<div class="modal fade" id="update">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Updating</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div>
+        <form #myForm="ngForm">
+          <select name="car.id" [(ngModel)]="updatingClient.id" (change)="setDataUpdateClient(updatingClient.id)" class="custom-select mb-1">
+            <option *ngFor="let client of clients"   selected
+                    value="{{client.id}}">{{client.surname}} {{client.name}}
+            </option>
+          </select>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Surname</span>
+            </div>
+            <input type="text" name="surname" [(ngModel)]="updatingClient.surname" value="{{updatingClient.surname}}"
+                   class="form-control">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Name</span>
+            </div>
+            <input type="text" name="name" [(ngModel)]="updatingClient.name" value="{{updatingClient.name}}" class="form-control">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Patronymic</span>
+            </div>
+            <input type="text" name="patronymic" [(ngModel)]="updatingClient.patronymic" value="{{updatingClient.patronymic}}"
+                   class="form-control">
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Passport data</span>
+            </div>
+            <input type="text" name="passport" [(ngModel)]="updatingClient.passport" value="{{updatingClient.passport}}"
+                   class="form-control">
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Experience</span>
+            </div>
+            <input type="text" name="experience" [(ngModel)]="updatingClient.experience" value="{{updatingClient.experience}}"
+                   class="form-control">
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Phone number</span>
+            </div>
+            <input type="text" name="phone" [(ngModel)]="updatingClient.phoneNumber" value="{{updatingClient.phoneNumber}}"
+                   class="form-control">
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Address</span>
+            </div>
+            <input type="text" name="address" [(ngModel)]="updatingClient.address" value="{{updatingClient.address}}"
+                   class="form-control">
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button class="btn btn-outline-success p-2" type="submit" (click)="updateClient(updatingClient)">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <br>
 <div class="container">
   <table class="table table-hover table-light">
@@ -100,74 +177,6 @@
       <td>{{client.phoneNumber}}</td>
       <td>{{client.address}}</td>
       <td>
-        <a class="nav-link" data-toggle="modal" data-target="#reduct${client.id}">Update</a>
-        <!-- The Modal -->
-        <div>
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Updating</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-
-              <!-- Modal body -->
-              <div>
-                <form #myForm="ngForm">
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Surname</span>
-                    </div>
-                    <input type="text" name="surname" [(ngModel)]="client.surname" value="{{client.surname}}"
-                           class="form-control">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Name</span>
-                    </div>
-                    <input type="text" name="name" [(ngModel)]="client.name" value="{{client.name}}" class="form-control">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Patronymic</span>
-                    </div>
-                    <input type="text" name="patronymic" [(ngModel)]="client.patronymic" value="{{client.patronymic}}"
-                           class="form-control">
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Passport data</span>
-                    </div>
-                    <input type="text" name="passport" [(ngModel)]="client.passport" value="{{client.passport}}"
-                           class="form-control">
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Experience</span>
-                    </div>
-                    <input type="text" name="experience" [(ngModel)]="client.experience" value="{{client.experience}}"
-                           class="form-control">
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Phone number</span>
-                    </div>
-                    <input type="text" name="phone" [(ngModel)]="client.phoneNumber" value="{{client.phoneNumber}}"
-                           class="form-control">
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Address</span>
-                    </div>
-                    <input type="text" name="address" [(ngModel)]="client.address" value="{{client.address}}"
-                           class="form-control">
-                  </div>
-                  <!-- Modal footer -->
-                  <div class="modal-footer">
-                    <button class="btn btn-outline-success p-2" type="submit" (click)="updateClient(client)">Update</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
         <button class="btn btn-outline-success p-2" type="submit" (click)="deleteClient(client.id)">Delete</button>
       </td>
     </tr>

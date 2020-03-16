@@ -9,16 +9,17 @@
         <a class="nav-link" href="/">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" href="myModal">Add</a>
+        <a class="nav-link" data-toggle="modal" href="#myModal">Add</a>
+        <!-- The Modal -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" href="#update">Update</a>
         <!-- The Modal -->
       </li>
     </ul>
   </div>
 </nav>
-<br>
-<form>
-  <!--class="modal fade" id="myModal"-->
-  <div>
+  <div class="modal fade" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
 
@@ -88,16 +89,102 @@
               </div>
               <input type="number" name="price" [(ngModel)]="car.price" class="form-control">
             </div>
+            <div class="modal-footer">
+              <button class="btn btn-outline-success p-2" type="submit" (click)="addCar(car)">Save</button>
+            </div>
           </form>
-        </div>
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button class="btn btn-outline-success p-2" type="submit" (click)="addCar(car)">Save</button>
         </div>
       </div>
     </div>
   </div>
-</form>
+<!-- The Modal -->
+<div class="modal fade" id="update">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Updating</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form #myForm="ngForm">
+          <select name="car.id" [(ngModel)]="updatingCar.id" (change)="setDataUpdateCar(updatingCar.id)" class="custom-select mb-1">
+            <option *ngFor="let car of cars"   selected
+                    value="{{car.id}}">{{car.model}} {{car.vehicleNumber}}
+            </option>
+          </select>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Model</span>
+            </div>
+            <input type="text" name="model" [(ngModel)]="updatingCar.model" value="{{updatingCar.model}}"
+                   class="form-control">
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Color</span>
+            </div>
+            <input type="text" name="color" [(ngModel)]="updatingCar.color" value="{{updatingCar.color}}"
+                   class="form-control">
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Body type</span>
+            </div>
+            <select name="bodyType" [(ngModel)]="updatingCar.bodyType" class="custom-select mb-1">
+              <option selected value="sedan">Sedan</option>
+              <option value="miniven">Minivan</option>
+              <option value="coup">Coup</option>
+              <option value="hatchback">Hatchback</option>
+              <option value="liftback">Listback</option>
+              <option value="universalis">Universal</option>
+            </select>
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Transmission</span>
+            </div>
+            <select name="transmission" [(ngModel)]="updatingCar.transmission" class="custom-select mb-1">
+              <option selected value="Auto">Automatic transmission</option>
+              <option value="Manual">Manual transmission</option>
+            </select>
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Vehicle number</span>
+            </div>
+            <input type="text" name="vehicleNumber" [(ngModel)]="updatingCar.vehicleNumber" value="{{car.vehicleNumber}}"
+                   class="form-control">
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Status</span>
+            </div>
+            <form>
+              <select name="isFree" [(ngModel)]="updatingCar.isFree" class="custom-select mb-1">
+                <option selected value="false">Free</option>
+                <option value="true">Booked</option>
+              </select>
+            </form>
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Price per day rent</span>
+            </div>
+            <input type="number" name="price" [(ngModel)]="updatingCar.price" value="{{updatingCar.price}}"
+                   class="form-control">
+            <div class="modal-footer">
+              <button class="btn btn-outline-success p-2" type="submit" (click)="updateCar(updatingCar)">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <br>
 <div class="container">
   <table class="table table-hover table-light">
@@ -114,8 +201,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let car of cars" class="text-left">
-      <td>{{car.model}} - {{car.id}}</td>
+
+    <tr *ngFor="let car of cars" class="text-left" href="#reduct">
+      <td>{{car.model}}</td>
       <td>{{car.color}}</td>
       <td>{{car.bodyType}}</td>
       <td>{{car.transmission}}</td>
@@ -123,96 +211,6 @@
       <td>{{car.isFree}}</td>
       <td>{{car.price}}</td>
       <td>
-        <!--<a class="nav-link" data-toggle="modal" data-target="#reduct$1">Update</a>-->
-        <!-- The Modal -->
-        <form action="/cars/reduct/{{car.id}}" #myForm="ngForm">
-          <!--class="modal fade" id="reduct${{car.id}}"-->
-          <div>
-            <div class="modal-dialog">
-              <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Updating</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                  <form>
-                    <input type="hidden" name="id" [(ngModel)]="car.id" value="{{car.id}}">
-                    <div class="input-group mb-3 input-group-sm">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Model</span>
-                      </div>
-                      <input type="text" name="model" [(ngModel)]="car.model" value="{{car.model}}"
-                             class="form-control">
-                    </div>
-                    <div class="input-group mb-3 input-group-sm">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Color</span>
-                      </div>
-                      <input type="text" name="color" [(ngModel)]="car.color" value="{{car.color}}"
-                             class="form-control">
-                    </div>
-                    <div class="input-group mb-3 input-group-sm">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Body type</span>
-                      </div>
-                      <select name="bodyType" [(ngModel)]="car.bodyType" class="custom-select mb-1">
-                        <option selected value="sedan">Sedan</option>
-                        <option value="miniven">Minivan</option>
-                        <option value="coup">Coup</option>
-                        <option value="hatchback">Hatchback</option>
-                        <option value="liftback">Listback</option>
-                        <option value="universalis">Universal</option>
-                      </select>
-                    </div>
-                    <div class="input-group mb-3 input-group-sm">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Transmission</span>
-                      </div>
-                      <select name="transmission" [(ngModel)]="car.transmission" class="custom-select mb-1">
-                        <option selected value="Auto">Automatic transmission</option>
-                        <option value="Manual">Manual transmission</option>
-                      </select>
-                    </div>
-                    <div class="input-group mb-3 input-group-sm">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Vehicle number</span>
-                      </div>
-                      <input type="text" name="vehicleNumber" [(ngModel)]="car.vehicleNumber" value="{{car.vehicleNumber}}"
-                             class="form-control">
-                    </div>
-                    <div class="input-group mb-3 input-group-sm">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Status</span>
-                      </div>
-                      <form>
-                        <select name="isFree" [(ngModel)]="car.isFree" class="custom-select mb-1">
-                          <option selected value="false">Free</option>
-                          <option value="true">Booked</option>
-                        </select>
-                      </form>
-                    </div>
-                    <div class="input-group mb-3 input-group-sm">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Price per day rent</span>
-                      </div>
-                      <input type="number" name="price" [(ngModel)]="car.price" value="{{car.price}}"
-                             class="form-control">
-                    </div>
-                  </form>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button class="btn btn-outline-success p-2" type="submit" (click)="updateCar(car)">Update</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
         <button class="btn btn-outline-success p-2" type="submit" (click)="deleteCar(car.id)">Delete</button>
       </td>
     </tr>

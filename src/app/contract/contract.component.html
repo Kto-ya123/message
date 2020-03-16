@@ -28,16 +28,16 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Client</span>
                     </div>
-                    <select name="client" [(ngModel)]="contract.client" class="custom-select mb-1">
+                    <select name="client" [(ngModel)]="contract.client.id" class="custom-select mb-1">
                       <option *ngFor="let client of clients" selected
-                              value="{{client}}">{{client.surname}} {{client.name}}</option>
+                              value="{{client.id}}">{{client.surname}} {{client.name}}</option>
                     </select>
                   </div>
                   <div class="input-group mb-3 input-group-sm">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Car</span>
                     </div>
-                    <select name="car" [(ngModel)]="contract.car" class="custom-select mb-1">
+                    <select name="car" [(ngModel)]="contract.car.id" class="custom-select mb-1">
                       <option *ngFor="let car of cars"  selected
                               value="{{car.id}}">{{car.model}} {{car.vehicleNumber}} {{car.price}} BYN
                       </option>
@@ -108,16 +108,16 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Client</span>
                     </div>
-                    <select name="client" [(ngModel)]="contract.client" class="custom-select mb-1">
+                    <select name="client" [(ngModel)]="contract.client.id" class="custom-select mb-1">
                       <option *ngFor="let client of clients" selected
-                              value="{{client}}">{{client.surname}} {{client.name}}</option>
+                              value="{{client.id}}">{{client.surname}} {{client.name}}</option>
                     </select>
                   </div>
                   <div class="input-group mb-3 input-group-sm">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Car</span>
                     </div>
-                    <select name="car" [(ngModel)]="contract.car" class="custom-select mb-1">
+                    <select name="car" [(ngModel)]="contract.car.id" class="custom-select mb-1">
                       <option *ngFor="let car of cars"  selected
                               value="{{car.id}}">{{car.model}} {{car.vehicleNumber}} {{car.price}} BYN
                       </option>
@@ -127,21 +127,21 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Rental start date</span>
                     </div>
-                    <input type="date" name="dateOfStart" [(ngModel)]="contract.dateOfStart" value="${contract.dateOfStart}"
+                    <input type="date" name="dateOfStart" [(ngModel)]="contract.dateOfStart" value="{{contract.dateOfStart}}"
                            class="form-control">
                   </div>
                   <div class="input-group mb-3 input-group-sm">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Rental end date</span>
                     </div>
-                    <input type="date" name="dateOfEnd" [(ngModel)]="contract.dateOfEnd" value="${contract.dateOfEnd}"
+                    <input type="date" name="dateOfEnd" [(ngModel)]="contract.dateOfEnd" value="{{contract.dateOfEnd}}"
                            class="form-control">
                   </div>
                   <div class="input-group mb-3 input-group-sm">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Price</span>
                     </div>
-                    <input type="number" name="totalCost" [(ngModel)]="contract.totalCost" value="${contract.totalCost}"
+                    <input type="number" name="totalCost" [(ngModel)]="contract.totalCost" value="{{contract.totalCost}}"
                            class="form-control">
                   </div>
                   <!-- Modal footer -->
