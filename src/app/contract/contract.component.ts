@@ -18,6 +18,7 @@ export class ContractComponent implements OnInit {
   cars: Array<Car> = new Array<Car>();
   contracts: Array<Contract> = new Array<Contract>();
   contract: Contract = new Contract();
+  updatingContract: Contract = new Contract();
   constructor(private httpService: ContractHttpService, private clientHttpService: ClientHttpService,
               private carHttpService: CarHttpService) {}
   ngOnInit(): void {
@@ -47,5 +48,9 @@ export class ContractComponent implements OnInit {
       .subscribe(
         () => this.ngOnInit()
       );
+  }
+
+  setDataUpdateContract(contractId: number) {
+    this.httpService.getContract(contractId).subscribe( (data) => this.updatingContract = data);
   }
 }

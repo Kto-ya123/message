@@ -10,54 +10,109 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#myModal">Add</a>
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Adding</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-
-              <!-- Modal body -->
-              <div class="modal-body">
-                <form #myForm="ngForm">
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Contract number</span>
-                    </div>
-                    <select name="contract" [(ngModel)]="accident.contract.id"  class="custom-select mb-1">
-                      <option *ngFor="let contract of contracts" selected value="{{contract.id}}">{{contract.id}}
-                        -{{contract.car.model}}-{{contract.car.vehicleNumber}}</option>
-                    </select>
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Date of accident</span>
-                    </div>
-                    <input type="date" name="dateOfAccident" [(ngModel)]="accident.dateOfAccident" class="form-control">
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Cost of damage</span>
-                    </div>
-                    <input type="number" name="costOfDamage" [(ngModel)]="accident.costOfDamage" class="form-control">
-                  </div>
-                  <!-- Modal footer -->
-                  <div class="modal-footer">
-                    <button class="btn btn-outline-success p-2" type="submit" (click)="addAccident(accident)">Save</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#update">Update</a>
       </li>
     </ul>
   </div>
 </nav>
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Adding</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form #myForm="ngForm">
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Contract number</span>
+            </div>
+            <select name="contract" [(ngModel)]="accident.contract.id"  class="custom-select mb-1">
+              <option *ngFor="let contract of contracts" selected value="{{contract.id}}">{{contract.id}}
+                -{{contract.car.model}}-{{contract.car.vehicleNumber}}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Date of accident</span>
+            </div>
+            <input type="date" name="dateOfAccident" [(ngModel)]="accident.dateOfAccident" class="form-control">
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Cost of damage</span>
+            </div>
+            <input type="number" name="costOfDamage" [(ngModel)]="accident.costOfDamage" class="form-control">
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button class="btn btn-outline-success p-2" type="submit" (click)="addAccident(accident)">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="update">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Updating</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <!-- class="modal-body" -->
+      <div>
+        <form #myForm="ngForm">
+          <select name="car.id" [(ngModel)]="updatingAccident.id" (change)="setDataUpdateAccident(updatingAccident.id)" class="custom-select mb-1">
+            <option *ngFor="let accident of accidents"   selected
+                    value="{{accident.id}}">Accident ID: {{accident.id}} Contract ID: {{accident.contract.id}}
+            </option>
+          </select>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Contract number</span>
+            </div>
+            <select name="contract" [(ngModel)]="updatingAccident.contract.id" class="custom-select mb-1">
+              <option *ngFor="let contract of contracts" selected value="{{contract.id}}">{{contract.id}}
+                -{{contract.car.model}}-{{contract.car.vehicleNumber}}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Date of accident</span>
+            </div>
+            <input type="date" name="dateOfAccident"  [(ngModel)]="updatingAccident.dateOfAccident" class="form-control">
+          </div>
+          <div class="input-group mb-3 input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Cost of damage</span>
+            </div>
+            <input type="number" name="costOfDamage"  [(ngModel)]="updatingAccident.costOfDamage" value="{{updatingAccident.costOfDamage}}"
+                   class="form-control">
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button class="btn btn-outline-success p-2" type="submit"(click)="updateAccident(updatingAccident)">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <br>
 <div class="container">
   <table class="table table-hover table-light">
@@ -71,57 +126,10 @@
     </thead>
     <tbody>
     <tr *ngFor="let accident of accidents" class="text-left">
-      <td>{{accident.contract.id}}</td>
-      <td>{{accident.dateOfAccident}}</td>
+      <td>{{accident.contract.id}} - {{accident.contract.car.vehicleNumber}}</td>
+      <td>{{accident.dateOfAccident | date}}</td>
       <td>{{accident.costOfDamage}}</td>
       <td>
-        <a class="nav-link" data-toggle="modal" data-target="#reduct{{accident.id.toString(accident.id)}}">Update</a>
-        <!-- The Modal -->
-        <div class="modal fade" id="reduct{{accident.id.toString(accident.id)}}">
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Updating</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-
-              <!-- Modal body -->
-              <!-- class="modal-body" -->
-              <div>
-                <form #myForm="ngForm">
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Contract number</span>
-                    </div>
-                    <select name="contract" [(ngModel)]="accident.contract.id" class="custom-select mb-1">
-                      <option *ngFor="let contract of contracts" selected value="{{contract.id}}">{{contract.id}}
-                        -{{contract.car.model}}-{{contract.car.vehicleNumber}}</option>
-                    </select>
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Date of accident</span>
-                    </div>
-                    <input type="date" name="dateOfAccident"  [(ngModel)]="accident.dateOfAccident" class="form-control">
-                  </div>
-                  <div class="input-group mb-3 input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Cost of damage</span>
-                    </div>
-                    <input type="number" name="costOfDamage"  [(ngModel)]="accident.costOfDamage" value="{{accident.costOfDamage}}"
-                           class="form-control">
-                  </div>
-                  <!-- Modal footer -->
-                  <div class="modal-footer">
-                    <button class="btn btn-outline-success p-2" type="submit"(click)="updateAccident(accident)">Update</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
         <button class="btn btn-outline-success p-2" type="submit" (click)="deleteAccident(accident.id)">Update</button>
       </td>
     </tr>

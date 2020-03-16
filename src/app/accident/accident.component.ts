@@ -15,6 +15,7 @@ export class AccidentComponent implements OnInit {
   accidents: Array<Accident> = new Array<Accident>();
   accident: Accident = new Accident();
   contracts: Array<Contract> = new Array<Contract>();
+  updatingAccident: Accident = new Accident();
   constructor(private httpService: AccidentHttpService, private contractHttpService: ContractHttpService ) {}
   ngOnInit(): void {
     this.httpService.getAccidents().subscribe((data: Array<Accident>) => this.accidents = data);
@@ -42,5 +43,8 @@ export class AccidentComponent implements OnInit {
       .subscribe(
         () => this.ngOnInit()
       );
+  }
+  setDataUpdateAccident(accidentId: number) {
+    this.httpService.getAccident(accidentId).subscribe((data) => this.updatingAccident = data);
   }
 }
