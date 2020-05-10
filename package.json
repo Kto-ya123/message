@@ -19,12 +19,16 @@
     "@angular/platform-browser": "~9.0.2",
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
+    "@auth0/angular-jwt": "^4.0.0",
+    "auth0": "^2.25.1",
     "font-awesome": "^4.7.0",
     "primeicons": "^2.0.0",
     "primeng": "^9.0.0-rc.4",
     "rxjs": "^6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "angularx-social-login": "latest",
+    "angular-6-social-login": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.3",

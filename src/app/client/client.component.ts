@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Client} from '../../assets/client';
 import {NgForm} from '@angular/forms';
 import {ClientHttpService} from '../client/client.http.service';
+import {CarHttpService} from '../car/car.http.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-client',
@@ -13,8 +15,11 @@ export class ClientComponent implements OnInit {
   clients: Array<Client> = new Array<Client>();
   client: Client = new Client();
   updatingClient: Client = new Client();
-  constructor(private httpService: ClientHttpService ) {}
+  constructor(private httpService: ClientHttpService, private router: Router) {}
   ngOnInit(): void {
+    if (!sessionStorage.getItem('token')) {
+      this.router.navigate(['']);
+    }
     this.httpService.getClients().subscribe((data: Array<Client>) => this.clients = data);
   }
   addClient(client: Client): void {

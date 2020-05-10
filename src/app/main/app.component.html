@@ -6,6 +6,9 @@
       <a [routerLink]="['/clients']" class="btn-outline-secondary btn m-2">Clients</a>
       <a [routerLink]="['/contracts']" class="btn-outline-secondary btn m-2">Contracts</a>
       <a [routerLink]="['/accidents']" class="btn-outline-secondary btn m-2">Accidents</a>
+      <a *ngIf="!name" [routerLink]="['/login']" class="btn-outline-secondary btn m-2">Login</a>
+      <button *ngIf="name" (click)="logout()" class="btn-outline-secondary btn m-2">Logout</button>
+      <label *ngIf="name" style="margin-left: 30px ">{{name}}</label>
     </div>
   </div>
 </div>

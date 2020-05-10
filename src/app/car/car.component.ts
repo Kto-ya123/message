@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Car} from '../../assets/car';
 import {CarHttpService} from './car.http.service';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-car',
@@ -12,8 +13,11 @@ export class CarComponent implements OnInit {
   cars: Array<Car> = new Array<Car>();
   car: Car = new Car();
   updatingCar: Car = new Car();
-  constructor(private httpService: CarHttpService ) {}
+  constructor(private httpService: CarHttpService, private router: Router) {}
   ngOnInit(): void {
+    if (!sessionStorage.getItem('token')) {
+      this.router.navigate(['']);
+    }
     this.httpService.getCars().subscribe((data: Array<Car>) => this.cars = data);
   }
   addCar(car: Car): void {

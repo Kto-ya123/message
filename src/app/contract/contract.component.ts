@@ -6,6 +6,7 @@ import {Client} from '../../assets/client';
 import {Car} from '../../assets/car';
 import {ClientHttpService} from '../client/client.http.service';
 import {CarHttpService} from '../car/car.http.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contract',
@@ -20,14 +21,16 @@ export class ContractComponent implements OnInit {
   contract: Contract = new Contract();
   updatingContract: Contract = new Contract();
   constructor(private httpService: ContractHttpService, private clientHttpService: ClientHttpService,
-              private carHttpService: CarHttpService) {}
+              private carHttpService: CarHttpService, private router: Router) {}
   ngOnInit(): void {
+    if (!sessionStorage.getItem('token')) {
+      this.router.navigate(['']);
+    }
     this.httpService.getContracts().subscribe((data: Array<Contract>) => this.contracts = data);
     this.carHttpService.getCars().subscribe((data: Array<Car>) => this.cars = data);
     this.clientHttpService.getClients().subscribe((data: Array<Client>) => this.clients = data);
   }
   addContract(contract: Contract): void {
-
     this.httpService.setContract(contract)
       .subscribe(
         () => this.ngOnInit(),

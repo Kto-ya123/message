@@ -4,6 +4,8 @@ import {NgForm} from '@angular/forms';
 import {AccidentHttpService} from './accident.http.service';
 import {ContractHttpService} from '../contract/contract.http.service';
 import {Contract} from '../../assets/contract';
+import {CarHttpService} from '../car/car.http.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-accident',
@@ -16,8 +18,11 @@ export class AccidentComponent implements OnInit {
   accident: Accident = new Accident();
   contracts: Array<Contract> = new Array<Contract>();
   updatingAccident: Accident = new Accident();
-  constructor(private httpService: AccidentHttpService, private contractHttpService: ContractHttpService ) {}
+  constructor(private httpService: AccidentHttpService, private contractHttpService: ContractHttpService, private router: Router ) {}
   ngOnInit(): void {
+    if (!sessionStorage.getItem('token')) {
+      this.router.navigate(['']);
+    }
     this.httpService.getAccidents().subscribe((data: Array<Accident>) => this.accidents = data);
     this.contractHttpService.getContracts().subscribe((data: Array<Contract>) => this.contracts  = data);
   }

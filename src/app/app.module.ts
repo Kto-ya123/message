@@ -18,6 +18,8 @@ import {AppComponent} from './main/app.component';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {routing} from './app.routing';
 import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
+import {LoginHttpService} from './login/login.http.service';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import {HomeComponent} from './home/home.component';
     CarComponent,
     ContractComponent,
     AccidentComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import {HomeComponent} from './home/home.component';
     RouterModule,
     routing
   ],
-  providers: [CarHttpService, AccidentHttpService, ClientHttpService, ContractHttpService,
+  providers: [CarHttpService, AccidentHttpService, ClientHttpService, ContractHttpService, LoginHttpService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
