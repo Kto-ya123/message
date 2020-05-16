@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Contract} from '../../assets/Contract';
+import {Contract} from '../../assets/contract';
 
 @Injectable()
 export class ContractHttpService {

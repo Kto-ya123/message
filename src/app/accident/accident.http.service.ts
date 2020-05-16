@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Accident} from '../../assets/Accident';
+import {Accident} from '../../assets/accident';
 
 @Injectable()
 export class AccidentHttpService {

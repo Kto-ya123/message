@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Client} from '../../assets/Client';
+import {Client} from '../../assets/client';
 
 @Injectable()
 export class ClientHttpService {
